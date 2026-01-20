@@ -106,7 +106,7 @@ const AboutTheOffice = () => {
           </div>
 
           <div className="mt-12 flex flex-col md:flex-row gap-6 items-start">
-             <a href="../resume.pdf" target="_blank" rel="noopener noreferrer"
+             <a href="../Resume.pdf" target="_blank" rel="noopener noreferrer"
                className={`px-10 py-4 font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all rounded-sm flex items-center gap-3 cursor-pointer z-30
                ${isDarkMode ? 'bg-white text-black hover:bg-cyan-400 hover:text-white' : 'bg-[#2b5f8c] text-white hover:bg-[#1f4363]'}`}>
                <Paperclip size={20} />
