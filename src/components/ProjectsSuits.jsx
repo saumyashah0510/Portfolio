@@ -93,8 +93,8 @@ const CaseFile = ({ project, isDark, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.2 }}
     >
-      {/* 1. FOLDER COVER */}
-      <div className={`absolute inset-0 rounded-sm shadow-2xl p-6 flex flex-col justify-between border-t-[1px] transition-all duration-700 transform origin-bottom group-hover:rotate-x-180 group-hover:opacity-0 z-30
+      {/* 1. FOLDER COVER (Z-30) */}
+      <div className={`absolute inset-0 rounded-sm shadow-2xl p-6 flex flex-col justify-between border-t-[1px] transition-all duration-700 transform origin-bottom group-hover:rotate-x-180 group-hover:opacity-0 z-30 pointer-events-none group-hover:pointer-events-none
         ${isDark ? 'bg-[#1c1c1c] border-gray-600' : 'bg-[#d8c29d] border-[#b08d55]'} 
       `}>
          <div className={`absolute -top-4 left-0 w-24 h-6 rounded-t-sm border-t border-l border-r 
@@ -118,8 +118,8 @@ const CaseFile = ({ project, isDark, index }) => {
          </div>
       </div>
 
-      {/* 2. INSIDE PAPER */}
-      <div className={`absolute inset-0 top-2 rounded-sm p-6 flex flex-col justify-between shadow-inner transition-all duration-500 group-hover:-translate-y-4 group-hover:z-20 overflow-hidden
+      {/* 2. INSIDE PAPER (Fixed Z-Index: jumps to z-40 on hover) */}
+      <div className={`absolute inset-0 top-2 rounded-sm p-6 flex flex-col justify-between shadow-inner transition-all duration-500 group-hover:-translate-y-4 group-hover:z-40 overflow-hidden
         ${isDark ? 'bg-gray-200 text-gray-900' : 'bg-white text-gray-900'}`}
       >
         <div className="absolute inset-0 bg-blue-500/10 translate-y-full group-hover:animate-scan pointer-events-none z-10">
@@ -145,14 +145,15 @@ const CaseFile = ({ project, isDark, index }) => {
           </div>
         </div>
         
-        <div className="flex justify-end gap-4 mt-2 border-t border-gray-200 pt-2 z-20 relative">
+        {/* LINKS (Increased Z-index to 50 to be safe) */}
+        <div className="flex justify-end gap-4 mt-2 border-t border-gray-200 pt-2 z-50 relative">
            {project.github && (
-             <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] font-bold hover:text-blue-700 transition-colors">
+             <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] font-bold hover:text-blue-700 transition-colors cursor-pointer">
                 <Github size={12} /> CODE
              </a>
            )}
            {project.link && (
-             <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] font-bold hover:text-blue-700 transition-colors">
+             <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] font-bold hover:text-blue-700 transition-colors cursor-pointer">
                 <ExternalLink size={12} /> LIVE
              </a>
            )}

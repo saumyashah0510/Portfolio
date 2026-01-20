@@ -7,12 +7,13 @@ const SoundManager = () => {
   const audioRef = useRef(new Audio());
   const [currentTrack, setCurrentTrack] = useState(null);
 
-  // Define tracks
+  // Define tracks for 5 Pages
   const tracks = {
-    0: '/spiderman.mp3', 
-    1: '/office.mp3',   
-    2: '/got.mp3',       
-    3: '/suits.mp3'      
+    0: '/spiderman.mp3', // Hero
+    1: '/office.mp3',    // About
+    2: '/got.mp3',       // Skills
+    3: '/suits.mp3',     // Projects
+    4: '/himym.mp3'      // Contact (NEW)
   };
 
   const fadeAudio = (targetUrl) => {
@@ -45,22 +46,20 @@ const SoundManager = () => {
   };
 
   useEffect(() => {
-    // THE FIX: Select the <main> tag, not window
     const mainContainer = document.querySelector('main');
 
     const handleScroll = () => {
       if (isMuted || !mainContainer) return;
 
-      // Use scrollTop of the container, not window.scrollY
       const scrollPosition = mainContainer.scrollTop;
       const windowHeight = window.innerHeight;
       
-      // Calculate which page we are on
+      // Calculate active page (0 to 4)
       const activeSectionIndex = Math.round(scrollPosition / windowHeight);
 
-      const newTrack = tracks[activeSectionIndex];
-
-      if (newTrack !== currentTrack) {
+      // Boundary check to ensure we don't look for track 5 or -1
+      if (tracks[activeSectionIndex] && tracks[activeSectionIndex] !== currentTrack) {
+        const newTrack = tracks[activeSectionIndex];
         setCurrentTrack(newTrack);
         fadeAudio(newTrack);
       }
@@ -82,13 +81,12 @@ const SoundManager = () => {
     if (isMuted) {
       setIsMuted(false);
       
-      // Immediately calculate current position to play right track
       const mainContainer = document.querySelector('main');
       const scrollPosition = mainContainer ? mainContainer.scrollTop : 0;
       const windowHeight = window.innerHeight;
       const activeSectionIndex = Math.round(scrollPosition / windowHeight);
       
-      const track = tracks[activeSectionIndex];
+      const track = tracks[activeSectionIndex] || tracks[0];
       setCurrentTrack(track);
       
       audio.src = track;
