@@ -73,15 +73,15 @@ const cases = [
     github: "https://github.com/saumyashah0510/Peer-to-Peer-File-Transfer"
   },
   {
-    id: "CASE #SYN-26",
-    title: "SYNAPSE WEBSITE",
-    client: "University Event Board",
+    id: "CASE #CINE-DB",
+    title: "CINECORE DB",
+    client: "Media Architecture",
     status: "EXECUTED",
-    tech: ["Backend", "PostgreSQL", "API"],
-    desc: "Official event platform handling registrations and live updates. Built robust data models and API architecture.",
+    tech: ["Redis", "PostgreSQL", "Architecture"],
+    desc: "Advanced database architecture for a media platform. Features optimized caching with Redis and scalable deployment strategies.",
     icon: <Database size={32} />,
-    link: null,
-    github: "https://github.com/vaishcodescape/Synapse-26"
+    link: "https://cinecore-db.vercel.app/",
+    github: "https://github.com/saumyashah0510/CineCore_DB"
   }
 ];
 
