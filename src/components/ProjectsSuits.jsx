@@ -77,8 +77,8 @@ const cases = [
     title: "CINECORE DB",
     client: "Media Architecture",
     status: "EXECUTED",
-    tech: ["Redis", "PostgreSQL", "Architecture"],
-    desc: "Advanced database architecture for a media platform. Features optimized caching with Redis and scalable deployment strategies.",
+    tech: ["React", "Redis", "PostgreSQL"],
+    desc: "Full-stack database-centric media application. Features robust backend architecture and optimized caching with Redis.",
     icon: <Database size={32} />,
     link: "https://cinecore-db.vercel.app/",
     github: "https://github.com/saumyashah0510/CineCore_DB"
