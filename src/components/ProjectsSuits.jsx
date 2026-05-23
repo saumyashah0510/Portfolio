@@ -110,10 +110,7 @@ const cases = [
 const CaseFile = ({ project, isDark, index }) => {
   return (
     <motion.div
-      className="relative w-[85vw] max-w-[350px] shrink-0 h-72 perspective-1000 group cursor-pointer snap-center"
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.2 }}
+      className="relative w-[85vw] max-w-[350px] shrink-0 h-72 perspective-1000 group cursor-pointer"
     >
       {/* 1. FOLDER COVER (Z-30) */}
       <div className={`absolute inset-0 rounded-sm shadow-2xl p-6 flex flex-col justify-between border-t-[1px] transition-all duration-700 transform origin-bottom group-hover:rotate-x-180 group-hover:opacity-0 z-30 pointer-events-none group-hover:pointer-events-none
@@ -262,20 +259,41 @@ const ProjectsSuits = () => {
         <div className="relative z-30">
           <div className="absolute -inset-4 bg-white/5 blur-xl rounded-full z-0 pointer-events-none"></div>
 
-          {/* HORIZONTAL SCROLL CAROUSEL */}
-          <div 
-            className="flex overflow-x-auto gap-6 md:gap-8 w-full max-w-7xl mx-auto px-6 md:px-12 py-8 snap-x snap-mandatory relative z-10 no-scrollbar items-center"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+          {/* HORIZONTAL AUTO-SCROLL MARQUEE */}
+          <div className="relative w-full max-w-[100vw] overflow-hidden py-12 z-10">
+            {/* Gradient Masks for smooth fade at edges */}
+            <div className={`absolute inset-y-0 left-0 w-12 md:w-48 z-20 pointer-events-none bg-gradient-to-r ${isDarkMode ? 'from-[#0f0f12]' : 'from-[#eef2f3]'} to-transparent`}></div>
+            <div className={`absolute inset-y-0 right-0 w-12 md:w-48 z-20 pointer-events-none bg-gradient-to-l ${isDarkMode ? 'from-[#0f0f12]' : 'from-[#eef2f3]'} to-transparent`}></div>
+
             <style>{`
-              .no-scrollbar::-webkit-scrollbar {
-                display: none;
+              @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .animate-scroll {
+                display: flex;
+                width: max-content;
+                animation: scroll 40s linear infinite;
+              }
+              .animate-scroll:hover {
+                animation-play-state: paused;
               }
             `}</style>
             
-            {cases.map((c, i) => (
-              <CaseFile key={c.id} project={c} isDark={isDarkMode} index={i} />
-            ))}
+            <div className="animate-scroll">
+              {/* First Set */}
+              <div className="flex gap-6 md:gap-8 pr-6 md:pr-8">
+                {cases.map((c, i) => (
+                  <CaseFile key={c.id + "-1"} project={c} isDark={isDarkMode} index={i} />
+                ))}
+              </div>
+              {/* Second Set (Duplicate for seamless loop) */}
+              <div className="flex gap-6 md:gap-8 pr-6 md:pr-8">
+                {cases.map((c, i) => (
+                  <CaseFile key={c.id + "-2"} project={c} isDark={isDarkMode} index={i} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
