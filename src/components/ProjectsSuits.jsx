@@ -59,7 +59,7 @@ const cases = [
     desc: "Large-scale algorithmic trading platform driven by machine learning models. Features robust predictive analytics and data pipelines.",
     icon: <TrendingUp size={32} />,
     link: null,
-    github: "https://github.com/ml-trading-platform/ml-trading-platform"
+    github: null
   },
   {
     id: "CASE #2024-F1",
@@ -103,7 +103,7 @@ const cases = [
     desc: "Official event platform handling registrations and live updates. Built robust data models and API architecture.",
     icon: <ScanLine size={32} />,
     link: null,
-    github: "https://github.com/vaishcodescape/Synapse-26"
+    github: null
   }
 ];
 
