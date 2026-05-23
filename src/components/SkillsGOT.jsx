@@ -357,6 +357,16 @@ const SigilItem = ({ skill, index, activeIndex, total, onClick, isDark }) => {
   );
 };
 
+const particles = Array.from({ length: 30 }).map((_, i) => ({
+  id: i,
+  width: Math.random() * 4 + 1,
+  height: Math.random() * 4 + 1,
+  left: Math.random() * 100,
+  duration: Math.random() * 10 + 10,
+  delay: Math.random() * 5,
+  xOffset: Math.random() * 50 - 25,
+}));
+
 const SkillsGOT = () => {
   const { isDarkMode } = useThemeStore();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -385,18 +395,22 @@ const SkillsGOT = () => {
          ${isDarkMode ? 'bg-[radial-gradient(circle_at_center,transparent_0%,#000000_80%)]' : 'bg-[radial-gradient(circle_at_center,transparent_0%,#5c4033_50%)]'}`} />
 
       {/* Particles */}
-      {[...Array(30)].map((_, i) => (
+      {particles.map((p) => (
         <motion.div
-          key={i}
+          key={p.id}
           className={`absolute rounded-full ${isDarkMode ? 'bg-white/40' : 'bg-[#4a0404]/60'}`} // Dark ash in light mode
-          style={{ width: Math.random() * 4 + 1, height: Math.random() * 4 + 1 }}
-          initial={{ x: Math.random() * window.innerWidth, y: isDarkMode ? -10 : window.innerHeight + 10 }}
+          style={{ 
+            width: p.width, 
+            height: p.height,
+            left: `${p.left}%`,
+          }}
+          initial={{ y: isDarkMode ? -10 : 1010 }}
           animate={{
-            y: isDarkMode ? window.innerHeight + 10 : -10,
-            x: `+=${Math.random() * 50 - 25}`,
+            y: isDarkMode ? 1010 : -10,
+            x: `+=${p.xOffset}`,
             opacity: isDarkMode ? [0, 0.4, 0] : [0.6, 0, 0.6]
           }}
-          transition={{ duration: Math.random() * 10 + 10, repeat: Infinity, delay: Math.random() * 5, ease: 'linear' }}
+          transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: 'linear' }}
         />
       ))}
 

@@ -13,6 +13,14 @@ const MarbleWall = ({ isDark }) => (
   />
 );
 
+const NIGHT_LIGHTS = Array.from({ length: 30 }).map((_, i) => ({
+  id: i,
+  bottom: Math.random() * 50 + '%',
+  left: Math.random() * 100 + '%',
+  duration: Math.random() * 4 + 2,
+  delay: Math.random() * 5,
+}));
+
 const CitySkyline = ({ isDark }) => (
   <div className={`absolute bottom-0 w-full h-[60%] z-0 transition-opacity duration-1000 ${isDark ? 'opacity-50' : 'opacity-30'}`}>
     {/* Buildings */}
@@ -22,16 +30,16 @@ const CitySkyline = ({ isDark }) => (
     <div className="absolute bottom-0 right-[2%] w-[8%] h-[40%] bg-current opacity-90" style={{ color: isDark ? '#1e293b' : '#cbd5e1' }}></div>
 
     {/* Night Lights */}
-    {isDark && [...Array(30)].map((_, i) => (
+    {isDark && NIGHT_LIGHTS.map((light) => (
       <motion.div
-        key={i}
+        key={light.id}
         className="absolute w-0.5 h-0.5 bg-yellow-100 rounded-full"
         style={{
-          bottom: Math.random() * 50 + '%',
-          left: Math.random() * 100 + '%',
+          bottom: light.bottom,
+          left: light.left,
         }}
         animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: Math.random() * 4 + 2, repeat: Infinity, delay: Math.random() * 5 }}
+        transition={{ duration: light.duration, repeat: Infinity, delay: light.delay }}
       />
     ))}
   </div>
@@ -107,7 +115,7 @@ const cases = [
   }
 ];
 
-const CaseFile = ({ project, isDark, index }) => {
+const CaseFile = ({ project, isDark }) => {
   return (
     <motion.div
       className="relative w-[85vw] max-w-[350px] shrink-0 h-72 perspective-1000 group cursor-pointer"

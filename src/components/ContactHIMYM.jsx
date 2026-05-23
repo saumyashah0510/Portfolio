@@ -36,14 +36,14 @@ const WoodTable = ({ isDark }) => (
   />
 );
 
-const Coaster = ({ icon, link, label, delay, color }) => (
+const Coaster = ({ icon, link, label, delay, color, rotateVal }) => (
     <motion.a 
         href={link}
         target="_blank"
         rel="noopener noreferrer"
         className="relative group w-24 h-24 md:w-32 md:h-32 rounded-full flex flex-col items-center justify-center shadow-xl border-4 border-[#d4b483] bg-[#f4e4bc] cursor-pointer"
         initial={{ scale: 0, rotate: 180 }}
-        whileInView={{ scale: 1, rotate: Math.random() * 20 - 10 }}
+        whileInView={{ scale: 1, rotate: rotateVal }}
         whileHover={{ scale: 1.1, rotate: 0, zIndex: 50 }}
         transition={{ delay, type: 'spring' }}
         style={{ backgroundImage: `url("https://www.transparenttextures.com/patterns/aged-paper.png")` }}
@@ -57,7 +57,7 @@ const Coaster = ({ icon, link, label, delay, color }) => (
     </motion.a>
 );
 
-const PlaybookForm = ({ isDark }) => {
+const PlaybookForm = () => {
     // Form State
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
@@ -180,15 +180,15 @@ const ContactHIMYM = () => {
             </motion.div>
 
             <div className="grid grid-cols-2 gap-6">
-                <Coaster icon={<Linkedin size={32} />} link="https://linkedin.com/in/saumya-shah-5bb8602b4/" label="Connect" delay={0.2} color="text-blue-700" />
-                <Coaster icon={<Github size={32} />} link="https://github.com/saumyashah0510" label="Code" delay={0.4} color="text-gray-900" />
-                <Coaster icon={<Instagram size={32} />} link="https://www.instagram.com/saumyashah05/" label="Social" delay={0.6} color="text-pink-600" />
-                <Coaster icon={<Mail size={32} />} link="mailto:saumyashah0510@gmail.com" label="Email" delay={0.8} color="text-red-600" />
+                <Coaster icon={<Linkedin size={32} />} link="https://linkedin.com/in/saumya-shah-5bb8602b4/" label="Connect" delay={0.2} color="text-blue-700" rotateVal={-8} />
+                <Coaster icon={<Github size={32} />} link="https://github.com/saumyashah0510" label="Code" delay={0.4} color="text-gray-900" rotateVal={6} />
+                <Coaster icon={<Instagram size={32} />} link="https://www.instagram.com/saumyashah05/" label="Social" delay={0.6} color="text-pink-600" rotateVal={-4} />
+                <Coaster icon={<Mail size={32} />} link="mailto:saumyashah0510@gmail.com" label="Email" delay={0.8} color="text-red-600" rotateVal={8} />
             </div>
         </div>
 
         {/* RIGHT: THE CONTACT FORM */}
-        <PlaybookForm isDark={isDarkMode} />
+        <PlaybookForm />
 
       </div>
     </section>

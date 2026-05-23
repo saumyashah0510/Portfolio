@@ -2,19 +2,19 @@ import { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+// Define tracks for 5 Pages
+const tracks = {
+  0: '/spiderman.mp3', // Hero
+  1: '/office.mp3',    // About
+  2: '/got.mp3',       // Skills
+  3: '/suits.mp3',     // Projects
+  4: '/himym.mp3'      // Contact (NEW)
+};
+
 const SoundManager = () => {
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef(new Audio());
   const [currentTrack, setCurrentTrack] = useState(null);
-
-  // Define tracks for 5 Pages
-  const tracks = {
-    0: '/spiderman.mp3', // Hero
-    1: '/office.mp3',    // About
-    2: '/got.mp3',       // Skills
-    3: '/suits.mp3',     // Projects
-    4: '/himym.mp3'      // Contact (NEW)
-  };
 
   const fadeAudio = (targetUrl) => {
     const audio = audioRef.current;
