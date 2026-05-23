@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useThemeStore } from '../store';
-import { Folder, ExternalLink, Github, Database, Flag, Network, ScanLine, Briefcase } from 'lucide-react';
+import { Folder, ExternalLink, Github, Database, Flag, Network, ScanLine, Briefcase, TrendingUp } from 'lucide-react';
 
 // --- ASSETS ---
 const MarbleWall = ({ isDark }) => (
@@ -51,6 +51,17 @@ const BasketballIcon = ({ className }) => (
 // --- RESUME DATA ---
 const cases = [
   {
+    id: "CASE #ML-TRD",
+    title: "ML TRADING PLATFORM",
+    client: "Algorithmic Trading",
+    status: "ONGOING // DESIGN",
+    tech: ["Python", "Machine Learning", "System Design"],
+    desc: "Large-scale algorithmic trading platform driven by machine learning models. Features robust predictive analytics and data pipelines.",
+    icon: <TrendingUp size={32} />,
+    link: null,
+    github: "https://github.com/ml-trading-platform/ml-trading-platform"
+  },
+  {
     id: "CASE #2024-F1",
     title: "F1 PREDICTION HUB",
     client: "Racing Strategy Dept",
@@ -60,6 +71,17 @@ const cases = [
     icon: <Flag size={32} />,
     link: "https://f1-prediction-hub-one.vercel.app/",
     github: "https://github.com/saumyashah0510/f1-prediction-hub"
+  },
+  {
+    id: "CASE #CINE-DB",
+    title: "CINECORE DB",
+    client: "Media Architecture",
+    status: "EXECUTED",
+    tech: ["FastAPI", "Redis", "PostgreSQL"],
+    desc: "Full-stack database-centric media application. Features robust backend architecture and optimized caching with Redis.",
+    icon: <Database size={32} />,
+    link: "https://cinecore-db.vercel.app/",
+    github: "https://github.com/saumyashah0510/CineCore_DB"
   },
   {
     id: "CASE #P2P-SYS",
@@ -73,22 +95,22 @@ const cases = [
     github: "https://github.com/saumyashah0510/Peer-to-Peer-File-Transfer"
   },
   {
-    id: "CASE #CINE-DB",
-    title: "CINECORE DB",
-    client: "Media Architecture",
+    id: "CASE #SYN-26",
+    title: "SYNAPSE WEBSITE",
+    client: "University Event Board",
     status: "EXECUTED",
-    tech: ["FastAPI", "Redis", "PostgreSQL"],
-    desc: "Full-stack database-centric media application. Features robust backend architecture and optimized caching with Redis.",
-    icon: <Database size={32} />,
-    link: "https://cinecore-db.vercel.app/",
-    github: "https://github.com/saumyashah0510/CineCore_DB"
+    tech: ["Backend", "PostgreSQL", "API"],
+    desc: "Official event platform handling registrations and live updates. Built robust data models and API architecture.",
+    icon: <ScanLine size={32} />,
+    link: null,
+    github: "https://github.com/vaishcodescape/Synapse-26"
   }
 ];
 
 const CaseFile = ({ project, isDark, index }) => {
   return (
     <motion.div
-      className="relative w-full md:max-w-sm h-72 perspective-1000 group cursor-pointer"
+      className="relative w-[85vw] max-w-[350px] shrink-0 h-72 perspective-1000 group cursor-pointer snap-center"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.2 }}
@@ -240,7 +262,17 @@ const ProjectsSuits = () => {
         <div className="relative z-30">
           <div className="absolute -inset-4 bg-white/5 blur-xl rounded-full z-0 pointer-events-none"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-6xl mx-auto px-4 relative z-10">
+          {/* HORIZONTAL SCROLL CAROUSEL */}
+          <div 
+            className="flex overflow-x-auto gap-6 md:gap-8 w-full max-w-7xl mx-auto px-6 md:px-12 py-8 snap-x snap-mandatory relative z-10 no-scrollbar items-center"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style>{`
+              .no-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            
             {cases.map((c, i) => (
               <CaseFile key={c.id} project={c} isDark={isDarkMode} index={i} />
             ))}
