@@ -93,17 +93,6 @@ const cases = [
     icon: <Network size={32} />,
     link: null,
     github: "https://github.com/saumyashah0510/Peer-to-Peer-File-Transfer"
-  },
-  {
-    id: "CASE #SYN-26",
-    title: "SYNAPSE WEBSITE",
-    client: "University Event Board",
-    status: "EXECUTED",
-    tech: ["Backend", "PostgreSQL", "API"],
-    desc: "Official event platform handling registrations and live updates. Built robust data models and API architecture.",
-    icon: <ScanLine size={32} />,
-    link: null,
-    github: null
   }
 ];
 
