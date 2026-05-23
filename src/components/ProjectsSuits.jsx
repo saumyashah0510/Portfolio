@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useThemeStore } from '../store';
-import { Folder, ExternalLink, Github, Database, Flag, Network, ScanLine, Briefcase, TrendingUp } from 'lucide-react';
+import { Folder, ExternalLink, Github, Database, Flag, Network, ScanLine, Briefcase, TrendingUp, BarChart2 } from 'lucide-react';
 
 // --- ASSETS ---
 const MarbleWall = ({ isDark }) => (
@@ -50,6 +50,17 @@ const BasketballIcon = ({ className }) => (
 
 // --- RESUME DATA ---
 const cases = [
+  {
+    id: "CASE #LEET-MET",
+    title: "LEETMETRICS",
+    client: "DSA Analytics",
+    status: "LIVE // DEPLOYED",
+    tech: ["React", "FastAPI", "PostgreSQL", "REST API"],
+    desc: "Full-stack DSA analytics engine categorizing submissions into 68 micro-patterns with a secure async background sync pipeline.",
+    icon: <BarChart2 size={32} />,
+    link: "https://leet-metrics-teal.vercel.app/",
+    github: "https://github.com/saumyashah0510/LeetMetrics"
+  },
   {
     id: "CASE #ML-TRD",
     title: "ML TRADING PLATFORM",
